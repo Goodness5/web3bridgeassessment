@@ -68,7 +68,9 @@ async function main() {
     DAIHolder,
     time
   );
+  const result = (await addLiquidity.wait()).logs.lastIndexOf;
   console.log(addLiquidity);
+  console.log(result);
 
 
   const amounttokendesired = await ethers.utils.parseEther("0.001");
@@ -87,12 +89,12 @@ async function main() {
     time
   );
   console.log(addLiquidityETH);
-  const liqamountAMin = await ethers.utils.parseEther("0.1");
+  const liqamountAMin = BigNumber.from(100000000000000000);
   console.log(liqamountAMin);
   const liqamountBMin = await ethers.utils.parseEther("0.1");
   console.log(liqamountBMin);
 
-  const liquidity = await ethers.utils.parseEther("0.001");
+  const liquidity = await ethers.utils.parseEther("1");
   await UniContract.connect(impersonatedSigner).approve(ROUTER, liquidity);
   
 
