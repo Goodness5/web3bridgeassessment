@@ -96,25 +96,25 @@ async function main() {
     time
   );
   console.log(addLiquidityETH);
-  // const liqamountAMin = BigNumber.from(100000000000000000);
-  // console.log(liqamountAMin);
-  // const liqamountBMin = await ethers.utils.parseEther("0.1");
-  // console.log(liqamountBMin);
+  const liqamountAMin = BigNumber.from(100000000000000000);
+  console.log(liqamountAMin);
+  const liqamountBMin = await ethers.utils.parseEther("0.1");
+  console.log(liqamountBMin);
 
-  // const liquidity = await ethers.utils.parseEther("1");
-  // await UniContract.connect(impersonatedSigner).approve(ROUTER, liquidity);
+  const liquidity = await ethers.utils.parseEther("1");
+  await UniContract.connect(impersonatedSigner).approve(ROUTER, liquidity);
   
 
-  // const removeLiquidity = await Uniswap.connect(impersonatedSigner).removeLiquidity(
-  //   DAI,
-  //   UNI,
-  //   liquidity,
-  //   liqamountAMin,
-  //   liqamountBMin,
-  //   DAI,
-  //   time
-  // );
-  // console.log(removeLiquidity);
+  const removeLiquidity = await Uniswap.connect(impersonatedSigner).removeLiquidity(
+    DAI,
+    UNI,
+    liquidity,
+    liqamountAMin,
+    liqamountBMin,
+    DAI,
+    time
+  );
+  console.log(removeLiquidity);
 
 }
 
