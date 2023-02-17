@@ -8,7 +8,7 @@ async function main() {
 
     const deployedNFTContract = await nftContract.deploy();
 
-    const IPFS = "QmWcoS3oz61dCqCCHFM2Xve37fQ713HMbipgR4dJtkaBns";
+    const IPFS = "Qmf5da37rSP8GTkFJSd4nBUdv7G35tPK5JPkK1ZUidGKyN";
 
     await deployedNFTContract.deployed();
 

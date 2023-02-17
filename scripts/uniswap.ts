@@ -42,13 +42,28 @@ async function main() {
   const uniBalance = await UniContract.balanceOf(DAIHolder);
   console.log(`uniBalance ${uniBalance}`);
 
-//   await Uniswap.connect(impersonatedSigner).addLiquidity(
-//     DAI,
-//     UNI,
-//     p,
-//     DAIHolder,
-//     time
-//   );
+  const amountAdesired = await ethers.utils.parseEther("0.1");
+  console.log(amountAdesired);
+
+  const amountAMin = await ethers.utils.parseEther("0.01");
+  console.log(amountAMin);
+
+
+  const amountBdesired = await ethers.utils.parseEther("0.1");
+  console.log(amountBdesired);
+
+  const amountBMin = await ethers.utils.parseEther("0.01");
+  console.log(amountBMin);
+  await Uniswap.connect(impersonatedSigner).addLiquidity(
+    DAI,
+    UNI,
+    amountAdesired,
+    amountBdesired,
+    amountAMin,
+    amountBMin,
+    DAIHolder,
+    time
+  );
 }
 
 main().catch((error) => {
