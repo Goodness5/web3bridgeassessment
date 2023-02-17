@@ -42,10 +42,10 @@ async function main() {
   const uniBalance = await UniContract.balanceOf(DAIHolder);
   console.log(`uniBalance ${uniBalance}`);
 
-//   await Uniswap.connect(impersonatedSigner).swapExactTokensForTokens(
-//     amountToSwap,
-//     0,
-//     paths,
+//   await Uniswap.connect(impersonatedSigner).addLiquidity(
+//     DAI,
+//     UNI,
+//     p,
 //     DAIHolder,
 //     time
 //   );

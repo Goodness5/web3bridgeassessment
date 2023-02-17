@@ -1,0 +1,17 @@
+{
+    "name": "Superman",
+    "description": "This is a one-of-a-kind digital collectible!",
+    "image": "https://ipfs.filebase.io/ipfs/QmZ8iyVeTQVxqCkEtY9oVyuqtETuxUVuoSFmjAFmUKcjTg",
+    "attributes": [
+      {
+        "trait_type": "Value",
+        "value": "Gold",
+        "color": "Red",
+        "character": "superman"
+      },
+      {
+        "trait_type": "Rarity",
+        "value": "Legendary"
+      }
+    ]
+  }
