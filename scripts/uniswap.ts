@@ -73,41 +73,48 @@ async function main() {
   console.log(result);
 
 
-  const amounttokendesired = await ethers.utils.parseEther("0.001");
+
+
+  
+  const amounttokendesired = await ethers.utils.parseEther("10");
   console.log(amounttokendesired)
-  const amounttokenmin = await ethers.utils.parseEther("0.000001");
+  const amounttokenmin = await ethers.utils.parseEther("0");
   console.log(amounttokendesired)
-  const amountethmin = await ethers.utils.parseEther("100");
+  const amountethmin = await ethers.utils.parseEther("0");
   console.log(amountethmin)
+  await DaiContract.connect(impersonatedSigner).approve(ROUTER, amounttokendesired);
+  await UniContract.connect(impersonatedSigner).approve(ROUTER, amounttokendesired);
+  // await UniContract.connect(impersonatedSigner).approve(ROUTER, amounttokenmin);
+  // await DaiContract.connect(impersonatedSigner).approve(ROUTER, amounttokenmin);
 
   const addLiquidityETH = await Uniswap.connect(impersonatedSigner).addLiquidityETH(
-    DAI,
+    UNI,
     amounttokendesired,
-    amounttokenmin,
-    amountethmin,
+    0,
+    0,
     DAIHolder,
     time
   );
   console.log(addLiquidityETH);
-  const liqamountAMin = BigNumber.from(100000000000000000);
-  console.log(liqamountAMin);
-  const liqamountBMin = await ethers.utils.parseEther("0.1");
-  console.log(liqamountBMin);
+  // const liqamountAMin = BigNumber.from(100000000000000000);
+  // console.log(liqamountAMin);
+  // const liqamountBMin = await ethers.utils.parseEther("0.1");
+  // console.log(liqamountBMin);
 
-  const liquidity = await ethers.utils.parseEther("1");
-  await UniContract.connect(impersonatedSigner).approve(ROUTER, liquidity);
+  // const liquidity = await ethers.utils.parseEther("1");
+  // await UniContract.connect(impersonatedSigner).approve(ROUTER, liquidity);
   
 
-  const removeLiquidity = await Uniswap.connect(impersonatedSigner).removeLiquidity(
-    DAI,
-    UNI,
-    liquidity,
-    liqamountAMin,
-    liqamountBMin,
-    DAI,
-    time
-  );
-  console.log(removeLiquidity);
+  // const removeLiquidity = await Uniswap.connect(impersonatedSigner).removeLiquidity(
+  //   DAI,
+  //   UNI,
+  //   liquidity,
+  //   liqamountAMin,
+  //   liqamountBMin,
+  //   DAI,
+  //   time
+  // );
+  // console.log(removeLiquidity);
 
 }
 
