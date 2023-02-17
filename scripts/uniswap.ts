@@ -16,7 +16,7 @@ async function main() {
   const path2 = ["0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", DAI];
 
   const path3 = ["0x748dE14197922c4Ae258c7939C7739f3ff1db573", DAI];
-  let time = 1676588399;
+  let time = 1976588399;
 
   const amountToSwap = await ethers.utils.parseEther("100");
   console.log(amountToSwap);
@@ -38,6 +38,7 @@ async function main() {
   console.log(`Dai balance before ${holderBalance}`);
 
   await DaiContract.connect(impersonatedSigner).approve(ROUTER, amountToSwap);
+  await UniContract.connect(impersonatedSigner).approve(ROUTER, amountToSwap);
 
   const uniBalance = await UniContract.balanceOf(DAIHolder);
   console.log(`uniBalance ${uniBalance}`);
@@ -54,7 +55,10 @@ async function main() {
 
   const amountBMin = await ethers.utils.parseEther("0.01");
   console.log(amountBMin);
-  await Uniswap.connect(impersonatedSigner).addLiquidity(
+
+  await DaiContract.connect(impersonatedSigner).approve(ROUTER, amountAdesired);
+  await UniContract.connect(impersonatedSigner).approve(ROUTER, amountBdesired);
+ const addLiquidity = await Uniswap.connect(impersonatedSigner).addLiquidity(
     DAI,
     UNI,
     amountAdesired,
@@ -64,6 +68,45 @@ async function main() {
     DAIHolder,
     time
   );
+  console.log(addLiquidity);
+
+
+  const amounttokendesired = await ethers.utils.parseEther("0.001");
+  console.log(amounttokendesired)
+  const amounttokenmin = await ethers.utils.parseEther("0.000001");
+  console.log(amounttokendesired)
+  const amountethmin = await ethers.utils.parseEther("100");
+  console.log(amountethmin)
+
+  const addLiquidityETH = await Uniswap.connect(impersonatedSigner).addLiquidityETH(
+    DAI,
+    amounttokendesired,
+    amounttokenmin,
+    amountethmin,
+    DAIHolder,
+    time
+  );
+  console.log(addLiquidityETH);
+  const liqamountAMin = await ethers.utils.parseEther("0.1");
+  console.log(liqamountAMin);
+  const liqamountBMin = await ethers.utils.parseEther("0.1");
+  console.log(liqamountBMin);
+
+  const liquidity = await ethers.utils.parseEther("0.001");
+  await UniContract.connect(impersonatedSigner).approve(ROUTER, liquidity);
+  
+
+  const removeLiquidity = await Uniswap.connect(impersonatedSigner).removeLiquidity(
+    DAI,
+    UNI,
+    liquidity,
+    liqamountAMin,
+    liqamountBMin,
+    DAI,
+    time
+  );
+  console.log(removeLiquidity);
+
 }
 
 main().catch((error) => {

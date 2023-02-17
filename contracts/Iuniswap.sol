@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
 pragma solidity ^0.8.9;
-interface IUniswapV2Router01 {
+interface Iuniswap{
     function factory() external pure returns (address);
     function WETH() external pure returns (address);
 
